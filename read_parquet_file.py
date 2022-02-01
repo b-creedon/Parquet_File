@@ -1,7 +1,6 @@
 ## simple Python script to read a Parquet format file
 
 ## https://numpy.org/doc/stable/
-from pickle import FALSE, TRUE
 import numpy as np
 
 ## https://pandas.pydata.org/docs/index.html
@@ -16,7 +15,7 @@ source_directory = 'NA'
 source_filename = 'NA'
 output_directory = 'NA'
 output_filename_csv = 'NA'
-verbose = FALSE
+verbose = False
 
 # Remove 1st argument from the
 # list of command line arguments
@@ -42,7 +41,7 @@ try:
         elif currentArgument in ("-o", "--output"):
             output_directory = currentValue
         elif currentArgument in ("-v"):
-            verbose = TRUE
+            verbose = True
 
 except getopt.error as err:
     # output error, and return with an error code
@@ -61,7 +60,7 @@ if output_directory == "NA":
     print ("Usage: [-o|--output] <output directory> is a mandatory value. ")
     sys.exit(1)
 
-if verbose == TRUE:
+if verbose == True:
     print (("Source Directory: % s") % (source_directory))
     print (("Source Filename: % s") % (source_filename))
     print (("Output Directory: % s") % (output_directory))
@@ -94,7 +93,7 @@ result = pd.read_parquet( source_directory+source_filename, engine="pyarrow", co
 ## Convert Parquet to CSV and wrote to output file.
 result.to_csv(output_filename_csv)
 
-if verbose == TRUE:
+if verbose == True:
     print( result.dtypes )
     print("Source Parquet[", source_directory+source_filename, "] converted to CSV[", output_filename_csv, "]")
 
