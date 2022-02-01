@@ -23,7 +23,7 @@ argumentList = sys.argv[1:]
 # Options
 options = "hi:f:o:v"
 # Long options
-long_options = ["Help", "Source Directory=", "Input Filename =", "Output Directory =", "Verbose"]
+long_options = ["help", "source=", "filename=", "output=", "verbose"]
 
 try:
     # Parsing argument
@@ -31,8 +31,8 @@ try:
      
     # checking each argument
     for currentArgument, currentValue in arguments:
-        if currentArgument in ("-h", "--Help"):
-            print ("Usage: read_parquet_file.py [-i|--source] <source directory> [-f|--filename] <source filename> [-o|--output] <output directory> -h [-v]")
+        if currentArgument in ("-h", "--help"):
+            print ("Usage: read_parquet_file.py [-i|--source] <source directory> [-f|--filename] <source filename> [-o|--output] <output directory> [-h|help] [-v|--verbose]")
             sys.exit()
         elif currentArgument in ("-i", "--source"):
             source_directory = currentValue
@@ -40,7 +40,7 @@ try:
             source_filename = currentValue
         elif currentArgument in ("-o", "--output"):
             output_directory = currentValue
-        elif currentArgument in ("-v"):
+        elif currentArgument in ("-v", "--verbose"):
             verbose = True
 
 except getopt.error as err:
