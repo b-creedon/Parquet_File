@@ -112,17 +112,22 @@ src_dir_list = os.listdir(source_directory)
 # Check that the list of filenames match the Source Filename 'pattern'
 for file_name in src_dir_list:
 
-    file_name_match = re.match( source_filename, file_name )
+    file_name_match = re.search( source_filename, file_name )
     if file_name_match:
-        print( 'RE MATCHING Looking for "%s" in "%s" ->' % (source_filename, file_name) )
-
-    if fnmatch.fnmatch( file_name, source_filename ):
         if verbose == True:
             print("--> MATCHING file. Adding", file_name )
         files_to_convert.append(file_name)
     else:
         if verbose == True:
             print("--> NOT MATCHING file. Ignoring", file_name )
+
+    # if fnmatch.fnmatch( file_name, source_filename ):
+    #     if verbose == True:
+    #         print("--> MATCHING file. Adding", file_name )
+    #     files_to_convert.append(file_name)
+    # else:
+    #     if verbose == True:
+    #         print("--> NOT MATCHING file. Ignoring", file_name )
 
 # If there are no filenames that match the Source Filename 'pattern', exit indicating "Success" 
 if len(files_to_convert) == 0:
